@@ -55,7 +55,7 @@
 | prefecture_id   | integer    | null: false                    |
 | municipality    | string     | null: false                    |
 | address         | string     | null: false                    |
-| Building number | string     | null: false                    |
+| building number | string     | null: false                    |
 | tel             | ineteger   | null: false                    |
 | purchase record | references | foreign_key: true              |
 ### Association
