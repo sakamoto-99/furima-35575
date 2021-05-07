@@ -9,7 +9,7 @@
 | email              | string     | null: false                    |
 | encrypted_password | string     | null: false                    |
 | real_name          | string     | null: false                    |
-| birthday           | datetime   | null: false                    |
+| birthday           | date       | null: false                    |
 
 ### Association
 - has_many :products
@@ -21,8 +21,9 @@
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | title           | string     | null: false                    |
-| category        | string     | null: false                    |
-| status          | string     | null: false                    |
+| description     | text       | null: false                    |
+| category_id     | integer    | null: false                    |
+| status_id       | integer    | null: false                    |
 | delivery_charge | integer    | null: false                    |
 | prefecture_id   | integer    | null: false                    |
 | day_to_ship     | integer    | null: false                    |
@@ -38,24 +39,24 @@
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
-| record     | string     | null: false                    |
 | user       | references | foreign_key: true              |
 | product    | references | foreign_key: true              |
 
 ### Association
 - belongs_to :user
-- belongs_to :shipping address
+- has_one :shipping_address
 - belongs_to :product
 
 ## shipping addressテーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| postal_code   | string     | null: false                    |
-| prefecture_id | integer    | null: false                    |
-| municipality  | string     | null: false                    |
-| address       | integer    | null: false                    |
-| tel           | ineteger   | null: false                    |
-
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| postal_code     | string     | null: false                    |
+| prefecture_id   | integer    | null: false                    |
+| municipality    | string     | null: false                    |
+| address         | string     | null: false                    |
+| Building number | string     | null: false                    |
+| tel             | ineteger   | null: false                    |
+| purchase record | references | foreign_key: true              |
 ### Association
 - belongs_to :purchase record
