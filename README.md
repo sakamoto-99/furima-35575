@@ -6,14 +6,14 @@
 | last_name          | string     | null: false                    |
 | first_name_ruby    | string     | null: false                    |
 | last_name_ruby     | string     | null: false                    |
-| email              | string     | null: false                    |
+| email              | string     | null: false, unique: true      |
 | encrypted_password | string     | null: false                    |
 | real_name          | string     | null: false                    |
 | birthday           | date       | null: false                    |
 
 ### Association
 - has_many :products
-- has_many :purchase records
+- has_many :purchase_records
 
 
 ## productsテーブル
@@ -32,7 +32,7 @@
 
 ### Association
 - belongs_to :user
-- has_one :purchase record
+- has_one :purchase_record
 
 
 ## purchase recordsテーブル
@@ -55,8 +55,8 @@
 | prefecture_id   | integer    | null: false                    |
 | municipality    | string     | null: false                    |
 | address         | string     | null: false                    |
-| building number | string     | null: false                    |
-| tel             | ineteger   | null: false                    |
+| building number | string     |                                |
+| tel             | string     | null: false                    |
 | purchase record | references | foreign_key: true              |
 ### Association
-- belongs_to :purchase record
+- belongs_to :purchase_record
