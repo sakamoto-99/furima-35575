@@ -59,4 +59,4 @@
 | tel             | string     | null: false                    |
 | purchase_record | references | foreign_key: true              |
 ### Association
-- belongs_to :purchase_record
+- belongs_to :purchase_record_
