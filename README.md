@@ -35,7 +35,7 @@
 - has_one :purchase_record
 
 
-## purchase recordsテーブル
+## purchase_recordsテーブル
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
@@ -47,7 +47,7 @@
 - has_one :shipping_address
 - belongs_to :product
 
-## shipping addressテーブル
+## shipping_addressテーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
@@ -55,8 +55,8 @@
 | prefecture_id   | integer    | null: false                    |
 | municipality    | string     | null: false                    |
 | address         | string     | null: false                    |
-| building number | string     |                                |
+| building_number | string     |                                |
 | tel             | string     | null: false                    |
-| purchase record | references | foreign_key: true              |
+| purchase_record | references | foreign_key: true              |
 ### Association
 - belongs_to :purchase_record
