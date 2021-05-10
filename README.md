@@ -2,6 +2,7 @@
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
+| nickname           | string     | null: false                    |
 | first_name         | string     | null: false                    |
 | last_name          | string     | null: false                    |
 | first_name_ruby    | string     | null: false                    |
@@ -58,4 +59,4 @@
 | tel             | string     | null: false                    |
 | purchase_record | references | foreign_key: true              |
 ### Association
-- belongs_to :purchase_record_
+- belongs_to :purchase_record
