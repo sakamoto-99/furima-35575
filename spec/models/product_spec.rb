@@ -57,19 +57,18 @@ RSpec.describe Product, type: :model do
       it 'priceは、¥¥9,999,999以上では出品できない' do
         @product.price = '10000000'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@product.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
-        it 'priceは、¥300以下では出品できない' do
-          @product.price = '0'
-          @product.valid?
-          expect(@product.errors.full_messages).to include("Price must be greater than or equal to 300")
+      it 'priceは、¥300以下では出品できない' do
+        @product.price = '0'
+        @product.valid?
+        expect(@product.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it 'priceは半角数字以外では出品できない' do
         @product.price = 'testABC１２３'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price is not a number")
+        expect(@product.errors.full_messages).to include('Price is not a number')
       end
     end
   end
 end
-
