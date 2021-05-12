@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   belongs_to :day_to_ship
   belongs_to :delivery_charge
   belongs_to :prefecture
+  belongs_to :user
   with_options presence: true do
     validates :image
     validates :title
