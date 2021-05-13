@@ -30,27 +30,27 @@ RSpec.describe Product, type: :model do
       it 'category_idが1だと登録できない' do
         @product.category_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include("Category must be greater than or equal to 2")
+        expect(@product.errors.full_messages).to include('Category must be greater than or equal to 2')
       end
       it 'status_idが1だと登録できない' do
         @product.status_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include("Status must be greater than or equal to 2")
+        expect(@product.errors.full_messages).to include('Status must be greater than or equal to 2')
       end
       it 'delivery_charge_idが1だと登録できない' do
         @product.delivery_charge_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include("Delivery charge must be greater than or equal to 2")
+        expect(@product.errors.full_messages).to include('Delivery charge must be greater than or equal to 2')
       end
       it 'prefecture_idが1だと登録できない' do
         @product.prefecture_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include("Prefecture must be greater than or equal to 2")
+        expect(@product.errors.full_messages).to include('Prefecture must be greater than or equal to 2')
       end
       it 'day_to_ship_idが1だと登録できない' do
         @product.day_to_ship_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include("Day to ship must be greater than or equal to 2")
+        expect(@product.errors.full_messages).to include('Day to ship must be greater than or equal to 2')
       end
       it 'priceが空では出品できない' do
         @product.price = ''
@@ -58,7 +58,7 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceは、¥¥9,999,999以上では出品できない' do
-        @product.price = 10000000
+        @product.price = 10_000_000
         @product.valid?
         expect(@product.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
