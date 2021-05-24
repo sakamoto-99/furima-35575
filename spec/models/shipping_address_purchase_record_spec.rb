@@ -22,22 +22,27 @@ RSpec.describe ShippingAddressPurchaseRecord, type: :model do
         @shipping_address_purchase_record.valid?
         expect(@shipping_address_purchase_record.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
       end
-      it '郵便番号がか空では購入できない' do
+      it '郵便番号が空では購入できない' do
         @shipping_address_purchase_record.postal_code = ''
         @shipping_address_purchase_record.valid?
         expect(@shipping_address_purchase_record.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
       end
-      it '都道府県が空では登録できない' do
-        @shipping_address_purchase_record.prefecture_id = ''
+      it '都道府県(prefecture_id)が１の場合は購入できない' do
+        @shipping_address_purchase_record.prefecture_id = 1
         @shipping_address_purchase_record.valid?
-        expect(@shipping_address_purchase_record.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@shipping_address_purchase_record.errors.full_messages).to include("Prefecture must be greater than or equal to 2")
+      end
+      it '市町村が空では購入できない' do
+        @shipping_address_purchase_record.municipality = ''
+        @shipping_address_purchase_record.valid?
+        expect(@shipping_address_purchase_record.errors.full_messages).to include("Municipality can't be blank")
       end
       it '番地が空では登録できない' do
         @shipping_address_purchase_record.address = ''
         @shipping_address_purchase_record.valid?
         expect(@shipping_address_purchase_record.errors.full_messages).to include("Address can't be blank")
       end
-      it '電話番号は11桁以内の数値でなければ購入できない' do
+      it '電話番号は10桁、または11桁の数値でなければ購入できない' do
         @shipping_address_purchase_record.tel = '123'
         @shipping_address_purchase_record.valid?
         expect(@shipping_address_purchase_record.errors.full_messages).to include('Tel is invalid')
@@ -46,6 +51,11 @@ RSpec.describe ShippingAddressPurchaseRecord, type: :model do
         @shipping_address_purchase_record.tel = ''
         @shipping_address_purchase_record.valid?
         expect(@shipping_address_purchase_record.errors.full_messages).to include("Tel can't be blank")
+      end
+      it '電話番号が英数字混合では登録できない。' do
+        @shipping_address_purchase_record.tel = 'test123'
+        @shipping_address_purchase_record.valid?
+        expect(@shipping_address_purchase_record.errors.full_messages).to include("Tel is invalid")
       end
       it 'tokenが空では登録できない' do
         @shipping_address_purchase_record.token = nil
