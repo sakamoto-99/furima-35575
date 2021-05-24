@@ -1,6 +1,7 @@
 class PurchaseRecordsController < ApplicationController
   before_action :authenticate_user!
   before_action :redirect_to_root
+  before_action :set_items, only: [:index, :create]
 
   def index
     @item = Item.find(params[:item_id])
@@ -39,5 +40,9 @@ class PurchaseRecordsController < ApplicationController
   def redirect_to_root
     @item = Item.find(params[:item_id])
     redirect_to root_path if current_user.id == @item.user.id
+  end
+
+  def set_items
+    @item = Item.find(params[:id])
   end
 end

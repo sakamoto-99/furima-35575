@@ -8,10 +8,14 @@ class ShippingAddressPurchaseRecord
     validates :prefecture_id
     validates :municipality
     validates :address
-    validates :tel, format: { with: /\A\d{11}\z/ }
+    validates :building_number
+    validates :tel, format: { with: /\A\d{10,11}\z/ }
     validates :token
+    with_options numericality: { only_integer: true, greater_than_or_equal_to: 2 } do
+      validates :prefecture_id
+    end
   end
-  # binding.pry
+
   def save
     purchase_record = PurchaseRecord.create(user_id: user_id, item_id: item_id)
     ShippingAddress.create(postal_code: postal_code, prefecture_id: prefecture_id, municipality: municipality, address: address,
