@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :delivery_charge
   belongs_to :prefecture
   belongs_to :user
-  belongs_to :purchase_record
+  has_one    :purchase_record
   with_options presence: true do
     validates :image
     validates :title
