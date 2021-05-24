@@ -8,9 +8,10 @@ class ShippingAddressPurchaseRecord
     validates :prefecture_id
     validates :municipality
     validates :address
-    validates :building_number
     validates :tel, format: { with: /\A\d{10,11}\z/ }
     validates :token
+    validates :user_id
+    validates :item_id
     with_options numericality: { only_integer: true, greater_than_or_equal_to: 2 } do
       validates :prefecture_id
     end

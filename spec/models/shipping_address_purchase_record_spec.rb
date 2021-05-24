@@ -11,6 +11,10 @@ RSpec.describe ShippingAddressPurchaseRecord, type: :model do
       it '全ての情報を正しく入力すれば購入できる' do
         expect(@shipping_address_purchase_record).to be_valid
       end
+      it '建物番号が空でも登録できる' do
+        @shipping_address_purchase_record.building_number = ''
+        @shipping_address_purchase_record.valid?
+      end
     end
     context '購入できないとき' do
       it '郵便番号の保存にはハイフンがなければ購入できない' do
@@ -33,11 +37,6 @@ RSpec.describe ShippingAddressPurchaseRecord, type: :model do
         @shipping_address_purchase_record.valid?
         expect(@shipping_address_purchase_record.errors.full_messages).to include("Address can't be blank")
       end
-      it '建物番号が空では登録できない' do
-        @shipping_address_purchase_record.building_number = ''
-        @shipping_address_purchase_record.valid?
-        expect(@shipping_address_purchase_record.errors.full_messages).to include("Building number can't be blank")
-      end
       it '電話番号は11桁以内の数値でなければ購入できない' do
         @shipping_address_purchase_record.tel = '123'
         @shipping_address_purchase_record.valid?
@@ -52,6 +51,16 @@ RSpec.describe ShippingAddressPurchaseRecord, type: :model do
         @shipping_address_purchase_record.token = nil
         @shipping_address_purchase_record.valid?
         expect(@shipping_address_purchase_record.errors.full_messages).to include("Token can't be blank")
+      end
+      it "user_idがなければ登録できないこと" do
+        @shipping_address_purchase_record.user_id = nil
+        @shipping_address_purchase_record.valid?
+        expect(@shipping_address_purchase_record.errors.full_messages).to include("User can't be blank")
+      end
+      it "item_idがなければ登録できないこと" do
+        @shipping_address_purchase_record.item_id = nil
+        @shipping_address_purchase_record.valid?
+        expect(@shipping_address_purchase_record.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
